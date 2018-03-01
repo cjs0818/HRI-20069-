@@ -205,7 +205,7 @@ Here is a list of the basic Docker commands from this page, and some related one
 
 ## [2] Git
 ### Install git & sign up for github.com
-In Ubuntu 16.04, git is already included but for the other OS please refer to https://git-scm.com
+In Ubuntu 16.04, git is already included, but for the other OS please refer to https://git-scm.com
 
 * git configure
 
