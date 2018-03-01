@@ -206,7 +206,7 @@ Here is a list of the basic Docker commands from this page, and some related one
 ## [2] RoS using Docker
 Use "docker pull <image_file>" or build a container using Dockerfile
 
-### [2-1] Use "docker pull"
+### [2-1] Pull a pre-built RoS image using "docker pull"
 Official docker hub site for RoS
   * https://hub.docker.com/_/ros/
 
@@ -234,7 +234,7 @@ Docker run
     $ docker run -it --rm --name ros_latest ros:latest /bin/bash
 ```
 
-### [2-2] Build a RoS container using Dockerfile
+### [2-2] Build your own RoS image using Dockerfile
 ```
     #--------------------
     FROM ubuntu:16.04
@@ -305,9 +305,6 @@ Docker run
 
     # generate /root/work directory
     WORKDIR /root/work
-
-    # copy .bashrc from host to target /root directory
-    ADD .bashrc /root
 ```
 
 ### [2-3] Shell files for docker build & docker run
@@ -330,6 +327,7 @@ Generate a file named start.sh fiel
     $IMAGE_ID \
     /bin/bash
 ```
+
 You should not forget to do
 ```
     chmod 755 start.sh
@@ -341,7 +339,22 @@ Then, execute
     $ ./start.sh
 ```
 
+And check out ros-related commands such as roscore
+```
+    # roscore
+```
+
 ### [2-4] Folder sharing
+```
+    IMAGE_ID=hri/ros:kinetic-desktop-full
+    NAME_ID=hri_ros_kinetic_desktopfull
+    WORKDIR=/home/jschoi/work/HRI-20069
+
+    docker run -it --rm \
+      --name $NAME_ID \
+      $IMAGE_ID \
+      /bin/bash
+```
 
 ### [2-5] Enable X-window
 
