@@ -1,4 +1,4 @@
-# HRI-20069-
+# HRI-20069 Week 1: S/W Developmental Framework Setup
 
 ## [1] Prepare Linux Laptop
 
