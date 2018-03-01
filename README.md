@@ -70,8 +70,8 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
 ```
 
 ## [3] Practice Docker
-### Dockerfile 
-  Create an empty directory. Change directories (cd) into the new directory, create a file called Dockerfile, copy-and-paste the following content into that file, and save it. 
+### Define a container with Dockerfile
+Create an empty directory. Change directories (cd) into the new directory, create a file called Dockerfile, copy-and-paste the following content into that file, and save it. 
 ```
     # Use an official Python runtime as a parent image
     $ FROM python:2.7-slim
@@ -94,7 +94,8 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
     # Run app.py when the container launches
     $ CMD ["python", "app.py"]
 ```
-  Create two more files, requirements.txt and app.py, and put them in the same folder with the Dockerfile.
+### The app itself
+Create two more files, requirements.txt and app.py, and put them in the same folder with the Dockerfile.
     
   * requirements.txt
 ```
@@ -130,3 +131,24 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
     if __name__ == "__main__":
         app.run(host='0.0.0.0', port=80)
 ``` 
+
+### Build the app
+
+We are ready to build the app. Make sure you are still at the top level of your new directory. Here’s what ls should show:
+```
+    $ ls
+    Dockerfile		app.py			requirements.txt
+```
+
+Now run the build command. This creates a Docker image, which we’re going to tag using -t so it has a friendly name.
+```
+    docker build -t friendlyhello .
+```
+
+Where is your built image? It’s in your machine’s local Docker image registry:
+```
+    $ docker image ls
+
+    REPOSITORY            TAG                 IMAGE ID
+    friendlyhello         latest              326387cea398
+```
