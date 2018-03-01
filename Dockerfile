@@ -60,11 +60,6 @@ RUN apt-get update && apt-get install -y \
     terminator \
     && rm -rf /var/lib/apt/lists/*
 
-#RUN apt-get update && apt-get install -y \
-#    wget \
-#    x11-apps \
-#    && rm -rf /var/lib/apt/lists/*
-
 # generate /root/work directory
 WORKDIR /root/work
 
