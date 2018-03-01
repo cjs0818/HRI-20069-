@@ -376,6 +376,16 @@ The start.sh file needs to be modified as
       /bin/bash
 ```
 
+Note that in OSX, --env "DISPLAY" should be changed like 
+```
+    EN0=en0    # It should be selected according your system (check with ifconfig)
+    DISLAY_IP=$(ifconfig $EN0 | grep inet | awk '$1=="inet" {print $2}')
+    
+    ...
+    --env DISPLAY=$DISPLAY_IP:0  # for OSX
+    ...
+```
+
 
 ## [3] Git
 ### Install git & sign up for github.com
