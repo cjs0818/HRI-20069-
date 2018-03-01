@@ -382,7 +382,7 @@ Note that in OSX, --env "DISPLAY" should be changed like
     DISLAY_IP=$(ifconfig $EN0 | grep inet | awk '$1=="inet" {print $2}')
     
     ...
-    --env DISPLAY=$DISPLAY_IP:0  # for OSX
+      --env DISPLAY=$DISPLAY_IP:0  # for OSX
     ...
 ```
 
