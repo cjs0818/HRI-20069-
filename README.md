@@ -2,7 +2,10 @@
 
 Linux Laptop required!!!
 
-## Week 1: Docker
+
+# Week 1: Docker (Linux Container)
+
+## [1] Docker and its application
 
 ### [1-1] Install Docker CE (Community Edition)
 
