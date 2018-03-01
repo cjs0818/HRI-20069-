@@ -399,13 +399,14 @@ In Ubuntu 16.04, git is already included, but for the other OS please refer to h
 ```
     $ mkdir hri-20069
 ```
+
   * Initialize the repository,
 ```
     $ cd hri-20069
     $ git init
 ```
-  * Configure the git
 
+  * Configure the git
 ```
     $ git config --global user.email "you@example.com”  
     $ git config --global user.name "Your Name"
