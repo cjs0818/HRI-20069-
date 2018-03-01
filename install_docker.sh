@@ -1,1 +1,1 @@
-docker build -t friendlyhello .
+docker build -t hri/ros:kinetic-desktop-full .

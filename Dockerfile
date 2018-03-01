@@ -63,5 +63,3 @@ RUN apt-get update && apt-get install -y \
 # generate /root/work directory
 WORKDIR /root/work
 
-# copy .bashrc from host to target /root directory
-ADD .bashrc /root
