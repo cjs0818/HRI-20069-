@@ -151,7 +151,7 @@ Now run the build command. This creates a Docker image, which we’re going to t
 
 Where is your built image? It’s in your machine’s local Docker image registry:
 ```
-    $ docker image ls
+    $ docker images
 
     REPOSITORY            TAG                 IMAGE ID
     friendlyhello         latest              326387cea398
@@ -194,6 +194,7 @@ Here is a list of the basic Docker commands from this page, and some related one
     $ docker container kill <hash>         # Force shutdown of the specified container
     $ docker container rm <hash>        # Remove specified container from this machine
     $ docker container rm $(docker container ls -a -q)         # Remove all containers
+    $ docker images                                  # List all images on this machine
     $ docker image ls -a                             # List all images on this machine
     $ docker image rm <image id>            # Remove specified image from this machine
     $ docker image rm $(docker image ls -a -q)   # Remove all images from this machine
@@ -206,6 +207,18 @@ Here is a list of the basic Docker commands from this page, and some related one
 Use "docker pull <image_file>" or build a container using Dockerfile
 
 ### [2-1] Use "docker pull"
+Official docker hub site for RoS
+  * https://hub.docker.com/_/ros/
+
+Docker pull
+```
+    $ docker pull ros
+```
+
+Docker run
+```
+    $ docker run -it --rm --name ros_latest ros:latest /bin/bash
+```
 
 ### [2-2] Build container using Dockerfile
 ```
