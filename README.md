@@ -2,7 +2,7 @@
 
 ## [1] Prepare Linux Laptop
 
-## [2] Install Docker
+## [2] Install Docker CE (Community Edition)
 
 Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce  
 
@@ -67,4 +67,10 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
   6. Sign up for Docker (https://cloud.docker.com/) and login.
 ```
     $ docker login
+```
+
+## [3] Practice Docker
+### Dockerfile 
+```
+    
 ```
