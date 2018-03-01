@@ -1,13 +1,16 @@
-# HRI-20069 
+# HRI-20069: Introduction to S/W developmental tools & perception technologies 
+
+Linux Laptop required!!!
+
 # Week 1: S/W Developmental Framework Setup
 
-## [1] Prepare Linux Laptop
+## [1] Docker
 
-## [2] Install Docker CE (Community Edition)
+### [1-1] Install Docker CE (Community Edition)
 
 Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce  
 
-### Set up the repository
+#### Set up the repository
 
   1. Update the apt package index:
 ```
@@ -38,7 +41,7 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
 ```
    * For other CPU, refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
 
-### Install Docker CE
+#### Install Docker CE
 
   1. Update the apt package index.
 ```
@@ -70,8 +73,8 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
     $ docker login
 ```
 
-## [3] Practice Docker
-### Define a container with Dockerfile
+### [1-2] Practice Docker
+#### Define a container with Dockerfile
 Create an empty directory. Change directories (cd) into the new directory, create a file called Dockerfile, copy-and-paste the following content into that file, and save it. 
 ```
     # Use an official Python runtime as a parent image
@@ -95,7 +98,7 @@ Create an empty directory. Change directories (cd) into the new directory, creat
     # Run app.py when the container launches
     $ CMD ["python", "app.py"]
 ```
-### The app itself
+#### The app itself
 Create two more files, requirements.txt and app.py, and put them in the same folder with the Dockerfile.
     
   * requirements.txt
@@ -133,7 +136,7 @@ Create two more files, requirements.txt and app.py, and put them in the same fol
         app.run(host='0.0.0.0', port=80)
 ``` 
 
-### Build the app
+#### Build the app
 
 We are ready to build the app. Make sure you are still at the top level of your new directory. Here’s what ls should show:
 ```
@@ -154,7 +157,7 @@ Where is your built image? It’s in your machine’s local Docker image registr
     friendlyhello         latest              326387cea398
 ```
 
-### Run the app
+#### Run the app
 
 Run the app, mapping your machine’s port 4000 to the container’s published port 80 using -p:
 ```
@@ -179,7 +182,7 @@ You get the long container ID for your app and then are kicked back to your term
     1fa4ab2cf395        friendlyhello       "python app.py"     28 seconds ago
 ```
 
-### Recap & further study
+#### Recap & further study
 Here is a list of the basic Docker commands from this page, and some related ones if you’d like to explore a bit before moving on.
 ```
     $ docker build -t friendlyhello .  # Create image using this directory's Dockerfile
