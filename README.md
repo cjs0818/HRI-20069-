@@ -2,9 +2,7 @@
 
 Linux Laptop required!!!
 
-# Week 1: S/W Developmental Framework Setup
-
-## [1] Docker
+## Week 1: Docker
 
 ### [1-1] Install Docker CE (Community Edition)
 
