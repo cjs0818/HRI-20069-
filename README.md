@@ -215,6 +215,20 @@ Docker pull
     $ docker pull ros
 ```
 
+Then, you can see the docker ros image by 
+```
+    $ docker images
+```
+or by
+```
+    $ docker image ls -a   # List all images on this machine
+```
+like
+```
+  REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+  ros                 latest              a674644c9bd3        4 weeks ago         1.18GB
+```
+
 Docker run
 ```
     $ docker run -it --rm --name ros_latest ros:latest /bin/bash
