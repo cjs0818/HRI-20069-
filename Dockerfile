@@ -1,21 +1,65 @@
-# Use an official Python runtime as a parent image
-FROM python:2.7-slim
+#--------------------
+FROM ubuntu:16.04
+#--------------------
 
-# Set the working directory to /app
-WORKDIR /app
+#-------------------
+#  RoS
 
-# Copy the current directory contents into the container at /app
-ADD . /app
+# install packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    dirmngr \
+    gnupg2 \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+# setup keys
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 421C365BD9FF1F717815A3895523BAEEB01FA116
 
-# Make port 80 available to the world outside this container
-EXPOSE 80
+# setup sources.list
+RUN echo "deb http://packages.ros.org/ros/ubuntu xenial main" > /etc/apt/sources.list.d/ros-latest.list
 
-# Define environment variable
-ENV NAME World
+# install bootstrap tools
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    python-rosdep \
+    python-rosinstall \
+    python-vcstools \
+    && rm -rf /var/lib/apt/lists/*
 
-# Run app.py when the container launches
-CMD ["python", "app.py"]
+# setup environment
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+
+# bootstrap rosdep
+RUN rosdep init \
+    && rosdep update
+
+# install ros packages
+ENV ROS_DISTRO kinetic
+RUN apt-get update && apt-get install -y \
+    ros-kinetic-ros-core=1.3.1-0* \
+    && rm -rf /var/lib/apt/lists/*
+
+# setup entrypoint
+COPY ./ros_entrypoint.sh /
+
+ENTRYPOINT ["/ros_entrypoint.sh"]
+CMD ["bash"]
+
+#FROM ros:kinetic-ros-core-xenial
+
+RUN apt-get update && apt-get install -y \
+    ros-kinetic-ros-base=1.3.1-0* \
+    ros-kinetic-robot=1.3.1-0* \
+    ros-kinetic-desktop=1.3.1-0* \
+    ros-kinetic-desktop-full=1.3.1-0* \
+    && rm -rf /var/lib/apt/lists/*
+
+#-------------------
+
+# install utilities
+RUN apt-get update && apt-get install -y \
+    terminator \
+    && rm -rf /var/lib/apt/lists/*
+
+# generate /root/work directory
+WORKDIR /root/work
 
