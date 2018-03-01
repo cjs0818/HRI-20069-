@@ -202,8 +202,94 @@ Here is a list of the basic Docker commands from this page, and some related one
     $ docker push username/repository:tag            # Upload tagged image to registry
     $ docker run username/repository:tag                   # Run image from a registry
 ```
+## [2] RoS using Docker
+Use "docker pull <image_file>" or build a container using Dockerfile
 
-## [2] Git
+### [2-1] Use "docker pull"
+
+### [2-2] Build container using Dockerfile
+```
+#--------------------
+# For CUDA
+#FROM jschoi/yolo
+#FROM nvidia/cuda
+FROM jschoi/cv_cuda
+#RUN ls -al
+#--------------------
+
+#-------------------
+#  RoS
+
+# install packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    dirmngr \
+    gnupg2 \
+    && rm -rf /var/lib/apt/lists/*
+
+# setup keys
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 421C365BD9FF1F717815A3895523BAEEB01FA116
+
+# setup sources.list
+RUN echo "deb http://packages.ros.org/ros/ubuntu xenial main" > /etc/apt/sources.list.d/ros-latest.list
+
+# install bootstrap tools
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    python-rosdep \
+    python-rosinstall \
+    python-vcstools \
+    && rm -rf /var/lib/apt/lists/*
+
+# setup environment
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+
+# bootstrap rosdep
+RUN rosdep init \
+    && rosdep update
+
+# install ros packages
+ENV ROS_DISTRO kinetic
+RUN apt-get update && apt-get install -y \
+    ros-kinetic-ros-core=1.3.1-0* \
+    && rm -rf /var/lib/apt/lists/*
+
+# setup entrypoint
+COPY ./ros_entrypoint.sh /
+
+ENTRYPOINT ["/ros_entrypoint.sh"]
+CMD ["bash"]
+
+#FROM ros:kinetic-ros-core-xenial
+
+RUN apt-get update && apt-get install -y \
+    ros-kinetic-ros-base=1.3.1-0* \
+    ros-kinetic-robot=1.3.1-0* \
+    ros-kinetic-desktop=1.3.1-0* \
+    ros-kinetic-desktop-full=1.3.1-0* \
+    && rm -rf /var/lib/apt/lists/*
+
+#-------------------
+
+# install utilities
+RUN apt-get update && apt-get install -y \
+    terminator \
+    && rm -rf /var/lib/apt/lists/*
+
+#RUN apt-get update && apt-get install -y \
+#    wget \
+#    x11-apps \
+#    && rm -rf /var/lib/apt/lists/*
+
+# generate /root/work directory
+WORKDIR /root/work
+
+# copy .bashrc from host to target /root directory
+ADD .bashrc /root
+```
+
+
+
+## [3] Git
 ### Install git & sign up for github.com
 In Ubuntu 16.04, git is already included, but for the other OS please refer to https://git-scm.com
 
