@@ -234,14 +234,10 @@ Docker run
     $ docker run -it --rm --name ros_latest ros:latest /bin/bash
 ```
 
-### [2-2] Build container using Dockerfile
+### [2-2] Build a RoS container using Dockerfile
 ```
     #--------------------
-    # For CUDA
-    #FROM jschoi/yolo
-    #FROM nvidia/cuda
-    FROM jschoi/cv_cuda
-    #RUN ls -al
+    FROM ubuntu:16.04
     #--------------------
 
     #-------------------
@@ -314,6 +310,40 @@ Docker run
     ADD .bashrc /root
 ```
 
+### [2-3] Shell files for docker build & docker run
+Generate a file named install_build.sh 
+```
+    docker build -t hri/ros:kinetic-desktop-full .
+```
+You should not forget to do
+```
+    chmod 755 install_build.sh
+```
+
+Generate a file named start.sh fiel
+```
+    IMAGE_ID=hri/ros:kinetic-desktop-full
+    NAME_ID=hri_ros_kinetic_desktopfull
+
+    docker run -it --rm \
+    --name $NAME_ID \
+    $IMAGE_ID \
+    /bin/bash
+```
+You should not forget to do
+```
+    chmod 755 start.sh
+```
+
+Then, execute
+```
+    $ ./install_build.sh
+    $ ./start.sh
+```
+
+### [2-4] Folder sharing
+
+### [2-5] Enable X-window
 
 
 ## [3] Git
