@@ -358,6 +358,25 @@ And check out ros-related commands such as roscore
 
 ### [2-5] Enable X-window
 
+The start.sh file needs to be modified as 
+```
+    IMAGE_ID=hri/ros:kinetic-desktop-full
+    NAME_ID=hri_ros_kinetic_desktopfull
+    WORKDIR=/home/jschoi/work/HRI-20069
+
+    XSOCK=/tmp/.X11-unix
+
+    xhost +
+
+    docker run -it --rm \
+      --env "DISPLAY" \
+      --volume $XSOCK:$XSOCK:rw \
+      --volume $WORKDIR:/root/work:rw \
+      --name $NAME_ID \
+      $IMAGE_ID \
+      /bin/bash
+```
+
 
 ## [3] Git
 ### Install git & sign up for github.com
