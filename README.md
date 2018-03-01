@@ -152,3 +152,25 @@ Where is your built image? It’s in your machine’s local Docker image registr
     REPOSITORY            TAG                 IMAGE ID
     friendlyhello         latest              326387cea398
 ```
+
+### Run the app
+
+Run the app, mapping your machine’s port 4000 to the container’s published port 80 using -p:
+```
+    docker run -p 4000:80 friendlyhello
+```
+
+You should see a message that Python is serving your app at http://0.0.0.0:80. But that message is coming from inside the container, which doesn’t know you mapped port 80 of that container to 4000, making the correct URL http://localhost:4000.
+
+Go to that URL in a web browser to see the display content served up on a web page.
+
+Now let’s run the app in the background, in detached mode:
+```
+    docker run -d -p 4000:80 friendlyhello
+```
+
+You get the long container ID for your app and then are kicked back to your terminal. Your container is running in the background. You can also see the abbreviated container ID with docker container ls (and both work interchangeably when running commands):
+
+$ docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED
+1fa4ab2cf395        friendlyhello       "python app.py"     28 seconds ago
