@@ -370,5 +370,5 @@ In Ubuntu 16.04, git is already included, but for the other OS please refer to h
     $ git config --global user.name "Your Name"
     
     $ git config --global push.default simple
+    $ git config --global core.editor vi           # Using vi editor for git`
 ```
-
