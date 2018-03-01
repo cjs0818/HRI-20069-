@@ -363,7 +363,6 @@ The start.sh file needs to be modified as
     IMAGE_ID=hri/ros:kinetic-desktop-full
     NAME_ID=hri_ros_kinetic_desktopfull
     WORKDIR=/home/jschoi/work/HRI-20069
-
     XSOCK=/tmp/.X11-unix
 
     xhost +
