@@ -2,8 +2,9 @@
 
 Linux Laptop required!!!
 
-## Week 1: Docker
+# Week 1: Docker (Version Control)
 
+## [1] Docker and its application
 ### [1-1] Install Docker CE (Community Edition)
 
 Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce  
