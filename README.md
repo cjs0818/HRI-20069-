@@ -56,4 +56,15 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
 
   4. The scripts require root or sudo privileges to run. So, for convenience, you'd better add $USER to the docker group and reboot.
 ```
-    $sudo usermod -G docker -a $USER
+    $ sudo groupadd docker  # Maybe already exist
+    $ sudo usermod -aG docker $USER
+```
+  5. Configure Docker to start on boot
+```
+    $ sudo systemctl enable docker
+```
+
+  6. Sign up for Docker (https://cloud.docker.com/) and login.
+```
+    $ docker login
+```
