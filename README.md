@@ -170,7 +170,8 @@ Now let’s run the app in the background, in detached mode:
 ```
 
 You get the long container ID for your app and then are kicked back to your terminal. Your container is running in the background. You can also see the abbreviated container ID with docker container ls (and both work interchangeably when running commands):
-
-$ docker container ls
-CONTAINER ID        IMAGE               COMMAND             CREATED
-1fa4ab2cf395        friendlyhello       "python app.py"     28 seconds ago
+```
+    $ docker container ls
+    CONTAINER ID        IMAGE               COMMAND             CREATED
+    1fa4ab2cf395        friendlyhello       "python app.py"     28 seconds ago
+```
