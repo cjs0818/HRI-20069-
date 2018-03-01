@@ -165,6 +165,8 @@ You should see a message that Python is serving your app at http://0.0.0.0:80. B
 
 Go to that URL in a web browser to see the display content served up on a web page.
 
+![pic001](./assets/images/app-in-browser.png)
+
 Now let’s run the app in the background, in detached mode:
 ```
     docker run -d -p 4000:80 friendlyhello
