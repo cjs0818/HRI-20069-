@@ -202,3 +202,14 @@ Here is a list of the basic Docker commands from this page, and some related one
     $ docker push username/repository:tag            # Upload tagged image to registry
     $ docker run username/repository:tag                   # Run image from a registry
 ```
+
+## [2] Git
+### Install git & sign up for github.com
+In Ubuntu 16.04, git is already included but for the other OS please refer to https://git-scm.com
+
+* git configure
+
+```
+    $ git config --global user.email "you@example.com”  
+    $ git config --global user.name "Your Name"
+```
