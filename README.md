@@ -1,6 +1,13 @@
 # HRI-20069: Introduction to S/W developmental tools & perception technologies 
 
-Linux Laptop required!!!
+  * Linux Laptop required!!!
+  * Download git repository for this Class
+  ```
+   $ git clone https://github.com/cjs0818/HRI-20069.git
+   $ cd HRI-20069
+   $ git submodule init
+   $ git submodule update
+  ```
 
 # Week 1: Docker (Linux Container)
 
