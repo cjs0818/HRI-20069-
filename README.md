@@ -61,6 +61,7 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
 ```
     $ sudo groupadd docker  # Maybe already exist
     $ sudo usermod -aG docker $USER
+    $ sudo reboot
 ```
   5. Configure Docker to start on boot
 ```
