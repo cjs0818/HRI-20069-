@@ -380,3 +380,11 @@ Note that in OSX, --env "DISPLAY" should be changed like
       --env DISPLAY=$DISPLAY_IP:0  # for OSX
     ...
 ```
+
+## [3] RoS using docker-compose
+Refer to
+  * https://docs.docker.com/samples/library/ros/#compose
+
+```
+  git checkout 03_docker_ros_net
+```
