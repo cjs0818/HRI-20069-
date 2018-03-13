@@ -454,16 +454,9 @@ Then in another terminal, run the listener node similarly:
     rosrun roscpp_tutorials listener
   ```
 
-Alright! You should see listener is now echoing each message the talker broadcasting. You can then list the containers and see something like this:
-  ```
-  $ docker service ls
-  SERVICE ID          NAME                NETWORK             CONTAINER
-  67ce73355e67        listener            foo                 a62019123321
-  917ee622d295        master              foo                 f6ab9155fdbe
-  7f5a4748fb8d        talker              foo                 e0da2ee7570a
-  ```
+Alright! You should see listener is now echoing each message the talker broadcasting. 
 
-And for the services:
+And the containers can be shown by:
   ```
   $ docker ps
   CONTAINER ID        IMAGE               COMMAND                CREATED              STATUS              PORTS               NAMES
