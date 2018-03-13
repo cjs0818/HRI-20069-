@@ -68,6 +68,7 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
 
 ##### [Option] Install Docker CE by script
  ```
+ $ sudo apt-get install curl
  $ curl -fsSL get.docker.com -o get-docker.sh
  $ sudo sh get-docker.sh
  ```
