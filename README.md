@@ -7,6 +7,8 @@
    $ cd HRI-20069
    $ git submodule init
    $ git submodule update
+   $ cd HRI-20069-W1
+   $ git checkout 01_docker
   ```
 
 # Week 1: Docker (Linux Container)
@@ -81,14 +83,6 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
 ```
 
 ### [1-2] Practice Docker
-  ```
-  $ git clone https://github.com/cjs0818/HRI-20069.git
-  $ cd HRI-20069-W1
-  $ git submodule init
-  $ git submodule update
-  $ git checkout 01_docker
-  ```
-  
 #### Define a container with Dockerfile
 Create an empty directory. Change directories (cd) into the new directory, create a file called Dockerfile, copy-and-paste the following content into that file, and save it. 
 ```
@@ -220,6 +214,9 @@ Here is a list of the basic Docker commands from this page, and some related one
 ```
 ## [2] RoS using Docker
 Use "docker pull <image_file>" or build a container using Dockerfile
+ ```
+   $ git checkout 02_docker_ros
+ ```
 
 ### [2-1] Pull a pre-built RoS image using "docker pull"
 Official docker hub site for RoS
