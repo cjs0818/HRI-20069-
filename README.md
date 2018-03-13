@@ -1,6 +1,15 @@
 # HRI-20069: Introduction to S/W developmental tools & perception technologies 
 
-Linux Laptop required!!!
+  * Linux Laptop required!!!
+  * Download git repository for this Class
+  ```
+   $ git clone https://github.com/cjs0818/HRI-20069.git
+   $ cd HRI-20069
+   $ git submodule init
+   $ git submodule update
+   $ cd HRI-20069-W1
+   $ git checkout 01_docker
+  ```
 
 # Week 1: Docker (Linux Container)
 
@@ -74,14 +83,6 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
 ```
 
 ### [1-2] Practice Docker
-  ```
-  $ git clone https://github.com/cjs0818/HRI-20069.git
-  $ cd HRI-20069-W1
-  $ git submodule init
-  $ git submodule update
-  $ git checkout 01_docker
-  ```
-
 #### Define a container with Dockerfile
 Create an empty directory. Change directories (cd) into the new directory, create a file called Dockerfile, copy-and-paste the following content into that file, and save it. 
 ```
