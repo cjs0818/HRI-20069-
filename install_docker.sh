@@ -1,1 +1,1 @@
-docker build -t hri/ros:kinetic-desktop-full .
+docker build -t hri/ros:ros-tutorials .
