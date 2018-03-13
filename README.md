@@ -204,6 +204,9 @@ Here is a list of the basic Docker commands from this page, and some related one
     $ docker run username/repository:tag                   # Run image from a registry
 ```
 ## [2] RoS using Docker
+Refer to
+  * https://docs.docker.com/samples/library/ros/
+
 Use "docker pull <image_file>" or build a container using Dockerfile
 
 ### [2-1] Pull a pre-built RoS image using "docker pull"
