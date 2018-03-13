@@ -513,13 +513,18 @@ Start by making a folder named rostutorials and moving the Dockerfile we used ea
 Now from inside the same folder, use docker-copose to launch our ROS nodes and specify that they coexist on their own network:
   ```
   $ docker-compose up -d
-  Notice that a new network named rostutorials_default has now been created, you can inspect it further with:
+  ```
+Notice that a new network named rostutorials_default has now been created, you can inspect it further with:
+  ```
   $ docker network inspect rostutorials_default
-  We can monitor the logged output of each service, such as the listener node like so:
+  ```
+We can monitor the logged output of each service, such as the listener node like so:
+  ```
   $ docker-compose logs listener
-  Finally, we can stop and remove all the relevant containers using docker-copose from the same directory:
+  ```
+Finally, we can stop and remove all the relevant containers using docker-copose from the same directory:
+  ```
   $ docker-compose stop
   $ docker-compose rm
   ```
-
 Note: the auto-generated network, rostutorials_default, will persist over the life of the docker engine or until you explicitly remove it using docker network rm.
