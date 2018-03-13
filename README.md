@@ -316,6 +316,7 @@ Docker run
 ```
 
 ### [Option] docker pull 
+The above build will take 0.5 ~ 1 hour. So, you'd better download the following image which was already built by the author. And rename the image using 'docker tag [source image] [target image]'
 ```
  $ docker pull pristine70/ros:kinetic-desktop-full
  $ docker tag pristine70/ros:kinetic-desktop-full hri/ros:kinetic-desktop-full
