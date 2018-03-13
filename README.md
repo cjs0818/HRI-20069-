@@ -18,7 +18,16 @@
 
 Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce  
 
-#### Set up the repository
+
+#### [Option 1] Install Docker CE by script
+ ```
+ $ sudo apt-get install curl
+ $ curl -fsSL get.docker.com -o get-docker.sh
+ $ sudo sh get-docker.sh
+ ```
+
+#### [Option 2] Using repository
+##### Set up the repository
 
   1. Update the apt package index:
 ```
@@ -49,7 +58,7 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
 ```
    * For other CPU, refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
 
-#### Install Docker CE
+##### Install Docker CE
 
   1. Update the apt package index.
 ```
@@ -66,26 +75,19 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
     $ sudo docker run hello-world
 ```
 
-##### [Option] Install Docker CE by script
- ```
- $ sudo apt-get install curl
- $ curl -fsSL get.docker.com -o get-docker.sh
- $ sudo sh get-docker.sh
- ```
-
-
-  4. The scripts require root or sudo privileges to run. So, for convenience, you'd better add $USER to the docker group and reboot.
+#### After installation
+  1. The scripts require root or sudo privileges to run. So, for convenience, you'd better add $USER to the docker group and reboot.
 ```
     $ sudo groupadd docker  # Maybe already exist
     $ sudo usermod -aG docker $USER
     $ sudo reboot
 ```
-  5. Configure Docker to start on boot
+  2. Configure Docker to start on boot
 ```
     $ sudo systemctl enable docker
 ```
 
-  6. Sign up for Docker (https://cloud.docker.com/) and login.
+  3. Sign up for Docker (https://cloud.docker.com/) and login.
 ```
     $ docker login
 ```
