@@ -417,7 +417,7 @@ Build a ROS image that includes ROS tutorials using this Dockerfile:
   ```
 Then to build the image from within the same directory:
   ```
-  $ docker build --tag ros:ros-tutorials .
+  $ docker build --tag hri/ros:ros-tutorials .
   ```
 #### CREATE NETWORK
 To create a new network foo, we use the network command:
