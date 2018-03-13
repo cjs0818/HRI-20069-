@@ -204,9 +204,6 @@ Here is a list of the basic Docker commands from this page, and some related one
     $ docker run username/repository:tag                   # Run image from a registry
 ```
 ## [2] RoS using Docker
-Refer to
-  * https://docs.docker.com/samples/library/ros/
-
 Use "docker pull <image_file>" or build a container using Dockerfile
 
 ### [2-1] Pull a pre-built RoS image using "docker pull"
@@ -386,8 +383,143 @@ Note that in OSX, --env "DISPLAY" should be changed like
 
 ## [3] RoS using docker-compose
 Refer to
-  * https://docs.docker.com/samples/library/ros/#compose
+  * https://docs.docker.com/samples/library/ros/
 
 ```
   git checkout 03_docker_ros_net
 ```
+
+### [3-1] using docker build & run
+
+#### Build image
+Build a ROS image that includes ROS tutorials using this Dockerfile:
+  ```
+  FROM ros:indigo-ros-base
+  # install ros tutorials packages
+  RUN apt-get update && apt-get install -y \
+      ros-indigo-ros-tutorials \
+      ros-indigo-common-tutorials \
+      && rm -rf /var/lib/apt/lists/
+  ```
+Then to build the image from within the same directory:
+  ```
+  $ docker build --tag ros:ros-tutorials .
+  ```
+#### CREATE NETWORK
+To create a new network foo, we use the network command:
+  ```
+  $ docker network create foo
+  ```
+#### RUN SERVICES
+To create a container for the ROS master and advertise it’s service:
+  ```
+  $ docker run -it --rm \
+    --net foo \
+    --name master \
+    ros:ros-tutorials \
+    roscore
+  ```
+Now you can see that master is running and is ready manage our other ROS nodes. To add our talker node, we’ll need to point the relevant environment variable to the master service:
+  ```
+  $ docker run -it --rm \
+    --net foo \
+    --name talker \
+    --env ROS_HOSTNAME=talker \
+    --env ROS_MASTER_URI=http://master:11311 \
+    ros:ros-tutorials \
+    rosrun roscpp_tutorials talker
+  ```
+Then in another terminal, run the listener node similarly:
+  ```
+  $ docker run -it --rm \
+    --net foo \
+    --name listener \
+    --env ROS_HOSTNAME=listener \
+    --env ROS_MASTER_URI=http://master:11311 \
+    ros:ros-tutorials \
+    rosrun roscpp_tutorials listener
+  ```
+
+Alright! You should see listener is now echoing each message the talker broadcasting. You can then list the containers and see something like this:
+  ```
+  $ docker service ls
+  SERVICE ID          NAME                NETWORK             CONTAINER
+  67ce73355e67        listener            foo                 a62019123321
+  917ee622d295        master              foo                 f6ab9155fdbe
+  7f5a4748fb8d        talker              foo                 e0da2ee7570a
+  ```
+
+And for the services:
+  ```
+  $ docker ps
+  CONTAINER ID        IMAGE               COMMAND                CREATED              STATUS              PORTS               NAMES
+  a62019123321        ros:ros-tutorials   "/ros_entrypoint.sh    About a minute ago   Up About a minute   11311/tcp           listener
+  e0da2ee7570a        ros:ros-tutorials   "/ros_entrypoint.sh    About a minute ago   Up About a minute   11311/tcp           talker
+  f6ab9155fdbe        ros:ros-tutorials   "/ros_entrypoint.sh    About a minute ago   Up About a minute   11311/tcp           master
+  ```
+
+#### INTROSPECTION
+Ok, now that we see the two nodes are communicating, let get inside one of the containers and do some introspection what exactly the topics are:
+  ```
+  $ docker exec -it master bash
+  $ source /ros_entrypoint.sh
+  If we then use rostopic to list published message topics, we should see something like this:
+  $ rostopic list
+  /chatter
+  /rosout
+  /rosout_agg
+  ```
+
+#### TEAR DOWN
+To tear down the structure we’ve made, we just need to stop the containers and the services. We can stop and remove the containers using Ctrl^C where we launched the containers or using the stop command with the names we gave them:
+  ```
+  $ docker stop master talker listener
+  $ docker rm master talker listener
+  ```
+
+### [3-2] using docker-compose
+Refer to
+  * https://docs.docker.com/samples/library/ros/#compose
+
+Now that you have an appreciation for bootstrapping a distributed ROS example manually, lets try and automate it using docker-compose.
+
+Start by making a folder named rostutorials and moving the Dockerfile we used earlier inside this directory. Then create a yaml file named docker-compose.yml in the same directory and paste the following inside:
+  ```
+  version: '2'
+  services:
+    master:
+      build: .
+      container_name: master
+      command:
+        - roscore
+
+    talker:
+      build: .
+      container_name: talker
+      environment:
+        - "ROS_HOSTNAME=talker"
+        - "ROS_MASTER_URI=http://master:11311"
+      command: rosrun roscpp_tutorials talker
+
+    listener:
+      build: .
+      container_name: listener
+      environment:
+        - "ROS_HOSTNAME=listener"
+        - "ROS_MASTER_URI=http://master:11311"
+      command: rosrun roscpp_tutorials listener
+  ```
+
+Now from inside the same folder, use docker-copose to launch our ROS nodes and specify that they coexist on their own network:
+  ```
+  $ docker-compose up -d
+  Notice that a new network named rostutorials_default has now been created, you can inspect it further with:
+  $ docker network inspect rostutorials_default
+  We can monitor the logged output of each service, such as the listener node like so:
+  $ docker-compose logs listener
+  Finally, we can stop and remove all the relevant containers using docker-copose from the same directory:
+  $ docker-compose stop
+  $ docker-compose rm
+  ```
+
+Note: the auto-generated network, rostutorials_default, will persist over the life of the docker engine or until you explicitly remove it using docker network rm.
