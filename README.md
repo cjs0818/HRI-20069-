@@ -324,7 +324,7 @@ You should not forget to do
     chmod 755 install_build.sh
 ```
 
-Generate a file named start.sh fiel
+Generate a file named start.sh file
 ```
     IMAGE_ID=hri/ros:kinetic-desktop-full
     NAME_ID=hri_ros_kinetic_desktopfull
