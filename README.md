@@ -315,6 +315,12 @@ Docker run
     WORKDIR /root/work
 ```
 
+### [Option] docker pull 
+```
+ $ docker pull pristine70/ros:kinetic-desktop-full
+ $ docker tag pristine70/ros:kinetic-desktop-full hri/ros:kinetic-desktop-full
+```
+
 ### [2-3] Shell files for docker build & docker run
 Generate a file named install_build.sh 
 ```
