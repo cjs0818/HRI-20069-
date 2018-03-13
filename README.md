@@ -488,6 +488,11 @@ To tear down the structure we’ve made, we just need to stop the containers and
 Refer to
   * https://docs.docker.com/samples/library/ros/#compose
 
+Install docker-compose
+ ```
+ $ sudo apt-get install docker-compose
+ ```
+
 Now that you have an appreciation for bootstrapping a distributed ROS example manually, lets try and automate it using docker-compose.
 
 Start by making a folder named rostutorials and moving the Dockerfile we used earlier inside this directory. Then create a yaml file named docker-compose.yml in the same directory and paste the following inside:
