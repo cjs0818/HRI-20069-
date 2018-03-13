@@ -66,6 +66,13 @@ Refer to https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-
     $ sudo docker run hello-world
 ```
 
+##### [Option] Install Docker CE by script
+ ```
+ $ curl -fsSL get.docker.com -o get-docker.sh
+ $ sudo sh get-docker.sh
+ ```
+
+
   4. The scripts require root or sudo privileges to run. So, for convenience, you'd better add $USER to the docker group and reboot.
 ```
     $ sudo groupadd docker  # Maybe already exist
