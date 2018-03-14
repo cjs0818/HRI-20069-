@@ -445,7 +445,7 @@ To create a container for the ROS master and advertise it’s service:
   $ docker run -it --rm \
     --net foo \
     --name master \
-    ros:ros-tutorials \
+    hri/ros:ros-tutorials \
     roscore
   ```
 Now you can see that master is running and is ready manage our other ROS nodes. To add our talker node, we’ll need to point the relevant environment variable to the master service:
@@ -455,7 +455,7 @@ Now you can see that master is running and is ready manage our other ROS nodes. 
     --name talker \
     --env ROS_HOSTNAME=talker \
     --env ROS_MASTER_URI=http://master:11311 \
-    ros:ros-tutorials \
+    hri/ros:ros-tutorials \
     rosrun roscpp_tutorials talker
   ```
 Then in another terminal, run the listener node similarly:
@@ -465,7 +465,7 @@ Then in another terminal, run the listener node similarly:
     --name listener \
     --env ROS_HOSTNAME=listener \
     --env ROS_MASTER_URI=http://master:11311 \
-    ros:ros-tutorials \
+    hri/ros:ros-tutorials \
     rosrun roscpp_tutorials listener
   ```
 
