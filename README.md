@@ -555,3 +555,39 @@ Finally, we can stop and remove all the relevant containers using docker-copose 
   $ docker-compose rm
   ```
 Note: the auto-generated network, rostutorials_default, will persist over the life of the docker engine or until you explicitly remove it using docker network rm.
+
+## [4] RoS using docker-compose based on 'host' network driver
+We use the same docker images as the previous session '[3] RoS using docker-compose'.
+While previous session uses 'bridge' network driver, now we will use 'host' driver.
+
+In docker-compose.yml, add up 
+ ```
+ network_mode: "host"
+ ```
+ as
+ 
+ ```
+ version: '2'
+ 
+ services:
+
+  master:
+   build: .
+   container_name: master
+   network_mode: "host"
+   command:
+    - roscore
+
+  talker:
+   build: .
+   container_name: talker
+   network_mode: "host"
+   command: rosrun roscpp_tutorials talker
+
+  listener:
+   build: .
+   container_name: listener
+   network_mode: "host"
+   command: rosrun roscpp_tutorials listener
+ ```
+ 
